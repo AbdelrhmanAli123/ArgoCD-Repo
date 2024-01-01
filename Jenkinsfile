@@ -7,8 +7,8 @@ pipeline{
     // IMAGE_NAME=''
   }
   stages{
-    steps{
     stage('Code Checkout from Github'){
+     steps{
       git credentialsId:'github_cred', url: "${GIT_REPO}", branch: "main"
       }
     }
