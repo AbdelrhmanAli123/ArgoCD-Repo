@@ -28,8 +28,8 @@ pipeline{
         script{
           withCredentials([gitUsernamePassword(credentialsId: 'github_cred', gitToolName: 'Default')]) {
             sh """
-            git config --globel user.name Abdelrhman
-            git config --globel user.email balloabdelrhman@gmail.com
+            git config --global user.name Abdelrhman
+            git config --global user.email balloabdelrhman@gmail.com
             git add .
             git commit -am "update the deployment file"
             git push https://github.com/AbdelrhmanAli123/GitOps-CD-k8s-Argocd-promethues-grafana main
