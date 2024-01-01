@@ -9,7 +9,7 @@ pipeline{
   stages{
     steps{
     stage('Code Checkout from Github'){
-      git credentialsId: 'github_cred', branch: "${GIT_BRANCH}" url: "${GIT_BRANCH}"
+      git credentialsId: 'github_cred', branch: "${GIT_BRANCH}" url: "${GIT_REPO}"
       }
     }
     stage('echo'){
