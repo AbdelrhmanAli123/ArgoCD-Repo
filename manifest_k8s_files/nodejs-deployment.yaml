@@ -1,0 +1,47 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-nodejs-app
+  labels:
+    app: my-nodejs-app
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: my-nodejs-app
+  template:
+    metadata:
+      labels:
+        app: my-nodejs-app
+    spec:
+      initContainers:
+      - name: init-mongodb
+        image: busybox:latest
+        command: ["sh", "-c", "until nc -zv release-name-mongo-service:27017; do echo waiting for MongoDB; sleep 2; done"]
+      containers:
+      - name: nodejs-container
+        image: abdelrhmandevops/devops-task-image
+        ports:
+        - containerPort: 80
+        resources:
+          requests:
+            memory: 100Mi
+            cpu: 100m
+          limits:
+            memory: 200Mi
+            cpu: 100m
+        envFrom:
+        - configMapRef:
+            name: my-configs
+        env:
+          - name: mongo_userName
+            valueFrom:
+              secretKeyRef:
+                name: mysecrets
+                key: mongo_userName
+                
+          - name: mongo_password
+            valueFrom:
+              secretKeyRef:
+                name: mysecrets
+                key: mongo_password
