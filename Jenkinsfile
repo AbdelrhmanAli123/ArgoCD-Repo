@@ -1,6 +1,9 @@
 pipeline{
   agent any
-
+  
+  parameters {
+        string(name: 'IMAGE_VERSION', defaultValue: '', description: 'The version of the image')
+    }
   environment {
     GIT_REPO='https://github.com/AbdelrhmanAli123/GitOps-CD-k8s-Argocd-promethues-grafana'
     GIT_BRANCH='main'
@@ -15,7 +18,7 @@ pipeline{
     stage('echo'){
       steps{ 
         script{
-          sh "echo ${IMAGE_VERSION}"
+          sh "echo ${params.IMAGE_VERSION}"
         }
       }
     }
