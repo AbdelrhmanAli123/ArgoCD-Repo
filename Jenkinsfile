@@ -18,8 +18,8 @@ pipeline{
     stage('echo'){
       steps{ 
         script{
-          sh "echo ${params.IMAGE_VERSION}"
-          sh "echo ${IMAGE_NAME}"
+            sh "sed -i 's#image: abdelrhmandevops/devops-task-image#image: ${IMAGE_NAME}#' manifest_k8s_files/nodejs_deployment.yaml"
+            sh "cat manifest_k8s_files/nodejs_deployment.yaml"
         }
       }
     }
