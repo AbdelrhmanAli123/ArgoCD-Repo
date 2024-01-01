@@ -20,7 +20,7 @@ spec:
         command: ["sh", "-c", "until nc -zv release-name-mongo-service:27017; do echo waiting for MongoDB; sleep 2; done"]
       containers:
       - name: nodejs-container
-        image: abdelrhmandevops/devops-task-image
+        image: abdelrhmandevops/devops-gitops-project-36
         ports:
         - containerPort: 80
         resources:
