@@ -8,12 +8,11 @@ pipeline{
   }
   stages{
     steps{
-      
-    stage(Code Checkout from Github){
+    stage('Code Checkout from Github'){
       git credentialsId: 'github_cred', branch: "${GIT_BRANCH}" url: "${GIT_BRANCH}"
       }
     }
-    stage(echo){
+    stage('echo'){
       steps{ 
         script{
           sh "echo ${IMAGE_VERSION}"
