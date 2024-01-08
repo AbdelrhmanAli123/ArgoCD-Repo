@@ -18,7 +18,7 @@ pipeline{
     stage('update the deployment file'){
       steps{ 
         script{
-            sh "sed -i 's#image: abdelrhmandevops/devops-task-image#image: ${IMAGE_NAME}#' manifest_k8s_files/nodejs-deployment.yaml"
+            sh "sed -i 's/image: abdelrhmandevops\/devops-gitops-project.*/image: ${IMAGE_NAME}/g' manifest_k8s_files/nodejs-deployment.yaml"
             sh "cat manifest_k8s_files/nodejs-deployment.yaml"
         }
       }
